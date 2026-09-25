@@ -42,3 +42,9 @@
 - 2年生向けコーナー: 新規に書いた学習への誘いと実験例です。正式な授業計画や配属条件を定めるものではありません。
 
 この改訂では以前の静的SVG説明図を、研究モデルを単純化したCanvasによる3D概念体験に置き換えています。
+
+## Ultrasound workbench image
+- assets/ultrasound-liver.jpg: Mikael Häggström, Ultrasonography of a normal liver (2017), CC0 1.0.
+- Source: https://commons.wikimedia.org/wiki/File:Ultrasonography_of_a_normal_liver.jpg
+- License: https://creativecommons.org/publicdomain/zero/1.0/
+- The demo places a single public image at virtual positions. It does not represent PRIMA clinical data, a measured slice sequence, or a reconstructed anatomical volume.

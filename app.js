@@ -1,6 +1,6 @@
 'use strict';
 const canvas=document.querySelector('#cloud'),rotation=document.querySelector('#rotation');
-let angle=25,spinning=false;
+let angle=25,spinning=true;
 window.heroLab=(()=>{
  let selected=0,pitch=.18,drag=null,frameId=0,lastTime=0;
  const lang=()=>document.documentElement.lang==='en'?1:0,txt=(a,b)=>lang()?b:a;
@@ -19,6 +19,6 @@ window.heroLab=(()=>{
  document.querySelectorAll('[data-perspective]').forEach(b=>b.onclick=()=>{stop();angle=+b.dataset.perspective;rotation.value=angle;draw()});
  rotation.addEventListener('input',()=>{stop();angle=+rotation.value;draw()});document.querySelector('#motion').onclick=()=>{if(spinning)stop();else{spinning=true;sync();lastTime=performance.now();frameId=requestAnimationFrame(frame)}};
  canvas.addEventListener('pointerdown',e=>{stop();drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;angle=(angle+(e.clientX-drag[0])*.6+360)%360;pitch=Math.max(-.75,Math.min(.75,pitch+(e.clientY-drag[1])*.006));drag=[e.clientX,e.clientY];rotation.value=Math.round(angle);draw()});['pointerup','pointercancel','lostpointercapture'].forEach(ev=>canvas.addEventListener(ev,()=>drag=null));
- document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});new ResizeObserver(draw).observe(canvas);
- document.addEventListener('prima-language',()=>{controls();sync()});controls();return{draw,stop};
+ document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(frameId);if(!document.hidden&&spinning){lastTime=performance.now();frameId=requestAnimationFrame(frame)}});new ResizeObserver(draw).observe(canvas);
+ document.addEventListener('prima-language',()=>{controls();sync()});controls();sync();lastTime=performance.now();frameId=requestAnimationFrame(frame);return{draw,stop};
 })();
