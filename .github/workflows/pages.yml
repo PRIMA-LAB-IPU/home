@@ -27,8 +27,12 @@ jobs:
         run: |
           node --check app.js
           node --check content.js
+          node --check research-data.js
+          node --check lab3d.js
+          node --check playground.js
+          node --check community.js
           mkdir _site
-          cp index.html styles.css app.js content.js .nojekyll _site/
+          cp index.html styles.css app.js content.js research-data.js lab3d.js playground.js community.js .nojekyll _site/
           cp -r assets _site/assets
       - uses: actions/upload-pages-artifact@v4
         with:
